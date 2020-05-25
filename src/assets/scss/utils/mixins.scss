@@ -1,0 +1,158 @@
+@import "../utils/vars.scss";
+@import "../utils/fonts";
+
+@mixin dropdown-text-selected-div {
+	box-sizing: border-box;
+	border-radius: 4px 4px 0 0;
+	border: 1px solid $color-dark-shade-50;
+}
+
+@mixin dropdown-selected-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 175px;
+	color: $color-dark-shade-75;
+	font-family: $montserrat;
+	font-size: 14px;
+}
+
+@mixin dropdown-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: 1px solid $color-dark-shade-50;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 10px 20px $color-dark-shade-5;
+}
+
+@mixin dropdown_items {
+	display: flex;
+	width: 92px;
+	height: 30px;
+	justify-content: space-between;
+}
+
+@mixin content-buttons {
+	font-family: $montserrat-bold;
+	font-size: 12px;
+	line-height: 15px;
+	text-transform: uppercase;
+}
+
+@mixin rich-checkbox-text-normal {
+	font-family: $montserrat;
+	font-size: 12px;
+	line-height: 14px;
+	color: $color-dark-shade-50;
+}
+
+@mixin rich-checkbox-text-bold {
+	font-family: $montserrat-bold;
+	font-size: 14px;
+	line-height: 18px;
+	color: $color-dark-shade-75;
+}
+
+@mixin text-for-default {
+	color: $color-dark-shade-50;
+	font-family: $montserrat;
+	font-size: 12px;
+	line-height: 15px;
+	text-transform: uppercase;
+}
+
+@mixin logo {
+	content: url(\assets\img\group.svg);
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+@mixin cards-background {
+	background: $color-white;
+	border: 1px solid $color-black-with-a-twelve;
+	box-shadow: 0px 0px 25px $color-black-with-a-two;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+@mixin h1 {
+	font-family: $opensans-bold;
+	font-size: 24px;
+	line-height: 30px;
+	color: $color-dark-shade-100;
+}
+
+@mixin date-dropdown-placeholder {
+	padding-left: 15px;
+	padding-top: 11.56px;
+	width: 103px;
+	height: 24px;
+	font-family: $montserrat;
+	font-size: 14px;
+	line-height: 18px;
+	color: $color-dark-shade-75;
+}
+
+@mixin date-selected-button {
+	width: 44px;
+	height: 44px;
+	position: relative;
+	z-index: 2;
+}
+
+@mixin expandable-button-for-date-dropdowns {
+	background: url(\assets\img\expand_more_date_dropdown.svg) no-repeat scroll center right;
+	width: 44px;
+	height: 44px;
+	border: none;
+}
+
+@mixin text-for-account-verification {
+	font-family: $montserrat;
+	font-size: 14px;
+	line-height: 18px;
+	color: $color-black;
+}
+
+@mixin dropdowns-buttons {
+	width: 30px;
+	height: 30px;
+	border-radius: 22px;
+	background: $color-white;
+}
+
+@mixin text-for-reservation-card {
+	font-family: $montserrat;
+	font-size: 14px;
+	line-height: 24px;
+	color: $color-dark-shade-75;
+}
+
+@mixin position-for-elements-from-card-reservstion {
+	position: absolute;
+	z-index: 1;
+	left: 30px;
+}
+
+@mixin box-for-carousel {
+	width: 270px;
+	height: 257px;
+	background-color: $color-white;
+	box-shadow: 0px 10px 20px $color-dark-shade-5;
+	border-radius: 4px;
+}
+
+@mixin dark-gray-color-for-price-review {
+	font-family: $montserrat-bold;
+	font-size: 14px;
+	line-height: 18px;
+	color: $color-dark-shade-50;
+}
+
+@mixin light-gray-color-for-price-review {
+	font-family: $montserrat;
+	font-size: 12px;
+	line-height: 18px;
+	color: $color-dark-shade-50;
+}
