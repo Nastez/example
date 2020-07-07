@@ -2,35 +2,6 @@
 @import "utils/mixins.scss";
 @import "utils/fonts.scss";
 
-body {
-	font-family: $montserrat;
-	font-size: 14px;
-	line-height: 24px;
-	color: $color-dark-shade-75;
-	margin: 0px;
-}
-
 h1 {
-	font-family: $quicksand-bold;
-	font-size: 24px;
-	line-height: 30px;
-	margin: 0px;
-	color: $color-dark-shade-100;
-}
-
-h2 {
-	font-family: $quicksand-bold;
-	font-size: 19px;
-	line-height: 24px;
-	margin: 0px;
-	color: $color-dark-shade-100;
-}
-
-h3 {
-	font-family: $montserrat-bold;
-	font-size: 12px;
-	line-height: 15px;
-	text-transform: uppercase;
-	margin: 0px;
-	color: $color-dark-shade-100;
+	color: green;
 }

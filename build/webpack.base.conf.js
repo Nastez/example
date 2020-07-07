@@ -20,13 +20,10 @@ module.exports = {
 		paths: PATHS
 	},
 
-	entry: {
-		app: PATHS.src,
-		lk: `${PATHS.src}/lk.js` //Second entry
-	},
+	entry: './src/index.ts',
 
 	output: {
-		filename: `${PATHS.assets}js/[name].[hash].js`,
+		filename: `bundle.js`,
 		path: PATHS.dist,
 		publicPath: '/'
 	},
@@ -63,10 +60,10 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				exclude: '/node_modules/'
-			},
+				test: /\.ts$/,
+				include: [path.resolve(__dirname, 'src')],
+				use: 'ts-loader',
+			}, 
 			{
 				test: /\.scss$/,
 				use: [
@@ -129,7 +126,7 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: `${PATHS.assets}css/[name].[hash].css`,
 		}),
-		
+
 		new CopyWebpackPlugin([{
 				from: `${PATHS.src}/${PATHS.assets}img`,
 				to: `${PATHS.assets}img`
