@@ -23,8 +23,8 @@ module.exports = {
 	entry: './src/index.ts',
 
 	output: {
-		filename: `bundle.js`,
-		path: PATHS.dist,
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/'
 	},
 	optimization: {
@@ -61,9 +61,9 @@ module.exports = {
 			},
 			{
 				test: /\.ts$/,
-				include: [path.resolve(__dirname, 'src')],
+
 				use: 'ts-loader',
-			}, 
+			},
 			{
 				test: /\.scss$/,
 				use: [
