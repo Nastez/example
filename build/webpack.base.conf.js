@@ -23,7 +23,7 @@ module.exports = {
 	entry: './src/index.ts',
 
 	output: {
-		filename: `${PATHS.assets}js/bundle.js`,
+		filename: 'bundle.js',
 		path: PATHS.dist,
 		publicPath: '/'
 	},
