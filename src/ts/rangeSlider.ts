@@ -1,45 +1,45 @@
-class rangeSlider {
-	slider: object;
-	scale: object;
-	toddler: object;
 
-	constructor(slider: object, scale: object, toddler: object) {
-		this.slider = slider
-		this.scale = scale
-		this.toddler = toddler
+class Slider {
+	doc: Document;
+
+	scale: Scale;
+	toddler: Toddler;
+
+	constructor(doc: Document) {
+		this.doc = doc;
+		this.scale = new Scale(doc);
+		this.toddler = new Toddler(doc);
+
+		let sliderView = doc.getElementsByClassName('slider')[0];
+		sliderView.append(this.scale.view, this.toddler.view);
+	}
+};
+
+class Scale {
+	view: HTMLDivElement;
+
+	constructor(doc: Document) {
+		this.view = doc.createElement('div');
+		this.view.className = 'scale'
+	}
+
+};
+
+class Toddler {
+	view: HTMLDivElement;
+
+	constructor(doc: Document) {
+		this.view = doc.createElement('div');
+		this.view.className = 'toddler'
+
+		this.view.addEventListener("click", () => alert("Hello, bitches!"))
 	};
 };
 
-class slider {
-	app: HTMLElement = document.body;
-	slider: HTMLDivElement = document.createElement('div');
 
-	constructor() {
-		this.slider.className = 'slider'
-	}
-};
 
-class scale extends slider {
-	scale: HTMLDivElement = document.createElement('div');
-	constructor() {
-		super()
-		this.scale.className = 'scale'
-		this.slider.append(this.scale)
-	}
-};
 
-class toddler extends scale {
-	toddler: HTMLDivElement = document.createElement('div');
-	constructor() {
-		super()
-		this.app.append(this.slider)
-		this.toddler.className = 'toddler'
-		this.slider.append(this.toddler)
-	}
-};
-
-const rangeApp = new rangeSlider(new slider(), new scale(), new toddler());
-
+const rangeApp = new Slider(document);
 
 
 
