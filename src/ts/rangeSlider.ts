@@ -11,26 +11,30 @@ class Slider {
 		this.toddler = new Toddler(doc);
 
 		let sliderView = doc.getElementsByClassName('slider')[0];
-		sliderView.append(this.scale.view, this.toddler.view);
+		sliderView.appendChild(this.scale.view);
+		sliderView.appendChild(this.toddler.view);
 
+		let scaleView = this.scale.view;
 
-		let scaleView = doc.getElementsByClassName('scale')[0];
+		let toddlerView = this.toddler.view;
+		
+		this.toddler.view.addEventListener('mousedown', mouseDown, false); 
 
-		let toddlerView = doc.getElementById('handler');
-		toddlerView!.addEventListener('mousedown', mouseDown, false); // Спросить про false/true
-
-		scaleView.addEventListener('mouseup', mouseUp, false);
+		window.addEventListener('mouseup', mouseUp, false);
 
 		function mouseUp() {
-			scaleView.removeEventListener('mousemove', move, true);
+			window.removeEventListener('mousemove', move, true);
 		};
 
 		function mouseDown() {
-			scaleView.addEventListener('mousemove', move, true);
+			window.addEventListener('mousemove', move, true);
 		};
 
-		function move(event: any) {    // Спросить про тип
-			toddlerView!.style.left = event.clientX + 'px';
+		function move(event: any) {   
+			if(event.clientX > 0 && event.clientX < scaleView.clientWidth - toddlerView.clientWidth)  {
+				toddlerView.style.left = event.clientX + 'px';
+			}
+			
 		};
 	}
 };
