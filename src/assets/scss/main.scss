@@ -2,26 +2,33 @@
 @import "utils/mixins.scss";
 @import "utils/fonts.scss";
 
-.slider {
+// Example ts-slider
+
+.slider-container {
+	width: 60%;
+	margin: 100px auto;
 	position: relative;
 }
 
-.scale {
-	position: absolute;
-	width: 266px;
+.slider-container .track {
+	width: 100%;
 	height: 6px;
-	background: #ffffff;
-	border: 1px solid rgba(31, 32, 65, 0.25);
-	box-sizing: border-box;
-	border-radius: 3px;
+	background: #ccc;
 }
 
-.toddler {
+.slider-container .track .progress {
+	width: 100%;
+	height: 100%;
+	background: tomato;
+	transform-origin: 0;
+}
+
+.slider-container .thumb {
+	width: 20px;
+	height: 20px;
+	background: tomato;
 	position: absolute;
-	width: 12px;
-	height: 12px;
-	background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
-	border: 2px solid #ffffff;
-	border-radius: 10px;
+	top: -7px;
+	border-radius: 50px;
+	transform: translate(-50%);
 }
-
