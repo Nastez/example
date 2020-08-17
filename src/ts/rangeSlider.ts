@@ -1,83 +1,112 @@
-/*
-class Slider {
+import { parse } from "path";
+
+class TestSlider {
 	doc: Document;
-	scale: Scale;
-	toddler: Toddler;
-	coloredScale: ColoredScale;
+	track: TestTrack;
+	thumb: TestThumb;
+	progressBar: TestProgressBar;
 
-	constructor(doc: Document) {
+	// Options
+	id: string;
+	range: object;
+	width: number;
+	handles: number[];
+	displayValue: boolean;
+
+	constructor(doc: Document, id: string, range: object, width: number, handles: number[], displayValue: boolean) {
+		this.id = id;
+		this.range = range ? range : { min: 0, max: 100 };
+		this.width = width ? width : 150;
+		this.handles = handles ? handles : [0];
+		this.displayValue = displayValue ? displayValue : false;
+
 		this.doc = doc;
-		this.scale = new Scale(doc);
-		this.toddler = new Toddler(doc);
-		this.coloredScale = new ColoredScale(doc);
+		this.track = new TestTrack(doc);
+		this.thumb = new TestThumb(doc);
+		this.progressBar = new TestProgressBar(doc);
 
-		let sliderView = doc.getElementsByClassName('slider')[0];
-		sliderView.appendChild(this.scale.view);
-		sliderView.appendChild(this.toddler.view);
-		sliderView.appendChild(this.coloredScale.view);
+		const sliderContainerView = <HTMLElement>document.getElementById(this.id);
+		const track = this.track.trackView;
+		const progressBar = this.progressBar.progressBarView;
+		const thumb = this.thumb.thumbView;
+		const sliderContainerWidth: number = sliderContainerView.offsetWidth;
+		const sliderContainerLeft: number = sliderContainerView.offsetLeft;
 
-		let scaleView = this.scale.view;
+		const widthTest = this.width;
 
-		let toddlerView = this.toddler.view;
+		sliderContainerView.appendChild(this.track.trackView);
+		sliderContainerView.appendChild(this.thumb.thumbView);
+		track.appendChild(this.progressBar.progressBarView);
 
-		this.toddler.view.addEventListener('mousedown', mouseDown, false);
+		let percentage: number = 20;
+		let dragging: boolean = false;
+		let translate: number;
 
-		window.addEventListener('mouseup', mouseUp, false);
-
-		function mouseUp() {
-			window.removeEventListener('mousemove', move, true);
+		function setPercentage() {
+			progressBar.style.transform = 'scaleX(' + percentage / 100 + ')';
+			thumb.style.transform = 'translate(-50%) translateX(' + (percentage / 100 * sliderContainerWidth) + 'px)';
 		};
+		setPercentage();
 
-		function mouseDown() {
-			window.addEventListener('mousemove', move, true);
-		};
+		this.thumb.thumbView.addEventListener('mousedown', function (e: MouseEvent) {
+			dragging = true;
+		});
 
-		function move(event: any) {
-			if (event.clientX > 0 && event.clientX <= scaleView.clientWidth - toddlerView.clientWidth) {
-				toddlerView.style.left = event.clientX + 'px';
+		doc.addEventListener('mousemove', function (e: MouseEvent) {
+			if (dragging) {
+				if (e.clientX < sliderContainerLeft) {
+					percentage = 0;
+				} else if (e.clientX > sliderContainerWidth + sliderContainerLeft) {
+					percentage = 100;
+				} else {
+					translate = e.clientX - sliderContainerLeft;
+					percentage = translate / sliderContainerWidth * 100;
+				}
+				setPercentage();
 			}
-		};
-	}
-};
+		});
 
-class Scale {
-	view: HTMLDivElement;
+		doc.addEventListener('mouseup', function (e: MouseEvent) {
+			dragging = false;
+		});
+		function init() {
+			sliderContainerView.style.width = widthTest + "px";
 
-	constructor(doc: Document) {
-		this.view = doc.createElement('div');
-		this.view.className = 'scale'
-	}
-};
+			
+		}
 
-class Toddler {
-	view: HTMLDivElement;
+		init();
 
-	constructor(doc: Document) {
-		this.view = doc.createElement('div');
-		this.view.className = 'toddler';
-		this.view.id = 'handler';
 	};
+	
 };
 
-class ColoredScale {
-	view: HTMLDivElement;
+class TestTrack {
+	trackView: HTMLDivElement;
 
 	constructor(doc: Document) {
-		this.view = doc.createElement('div');
-		this.view.className = 'coloredScale';
+		this.trackView = doc.createElement('div');
+		this.trackView.className = 'track';
 	}
 };
 
-const rangeApp = new Slider(document);
+class TestProgressBar {
+	progressBarView: HTMLDivElement;
 
-*/
+	constructor(doc: Document) {
+		this.progressBarView = doc.createElement('div');
+		this.progressBarView.className = 'progress';
+	}
+};
+
+class TestThumb {
+	thumbView: HTMLDivElement;
+
+	constructor(doc: Document) {
+		this.thumbView = doc.createElement('div');
+		this.thumbView.className = 'thumb';
+	}
+};
 
 
-
-
-
-
-
-
-
-
+let rangeApp = new TestSlider(document, "EXSlider", { min: 0, max: 200 }, 300, [0], true);

@@ -7,4 +7,4 @@ import './ts/slider.ts'
 import './ts/rangeSlider.ts'
 
 
-import './js/ex'
+import './js/rangeslider.class'
