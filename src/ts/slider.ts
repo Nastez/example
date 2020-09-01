@@ -1,5 +1,5 @@
 import { parse } from "path";
-
+/*
 class Slider {
 	doc: Document;
 	track: Track;
@@ -85,3 +85,4 @@ class Thumb {
 };
 
 const rangeApp = new Slider(document);
+*/
